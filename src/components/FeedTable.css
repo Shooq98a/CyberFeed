@@ -1,0 +1,195 @@
+.table-container {
+  overflow-x: auto;
+  background: var(--bg-card);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  border: 1px solid var(--border-soft);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.feed-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.feed-table thead {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border-bottom: 2px solid var(--border-soft);
+  transition: border-color 0.3s ease;
+}
+
+.feed-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.feed-table td {
+  color: var(--text-muted);
+  padding: 15px;
+  border-bottom: 1px solid var(--border-soft);
+  transition: border-color 0.3s ease;
+}
+
+.feed-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.feed-table tbody tr:hover {
+  background: var(--hover-bg);
+}
+
+.title-cell a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  transition: color 0.2s ease;
+}
+
+.title-cell a:hover {
+  color: var(--header-blue);
+  text-decoration: underline;
+}
+
+.description-cell {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: var(--tag-blue);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.tag.highlight {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.category-badge {
+  background: var(--hover-bg);
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.analyze-btn-small {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.analyze-btn-small:hover:not(:disabled) {
+  background: var(--header-blue);
+  transform: translateY(-1px);
+}
+
+.analyze-btn-small:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.analysis-row {
+  background: var(--hover-bg);
+  transition: background-color 0.3s ease;
+}
+
+.ai-analysis {
+  padding: 15px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+.ai-analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.ai-analysis strong {
+  margin: 0;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  flex: 1;
+}
+
+.close-analysis-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.close-analysis-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+.close-analysis-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ai-analysis p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .feed-table {
+    font-size: 0.85rem;
+  }
+  
+  .feed-table th,
+  .feed-table td {
+    padding: 10px 8px;
+  }
+  
+  .description-cell {
+    font-size: 0.8rem;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
