@@ -18,6 +18,12 @@ export const translateText = async (text, language = 'ar') => {
     return text;
   }
 
+  // Check if API key is available
+  if (!OPENAI_API_KEY || OPENAI_API_KEY.trim() === '') {
+    console.warn('OpenAI API key is not set. Translation disabled. Please set VITE_OPENAI_API_KEY in .env file');
+    return text;
+  }
+
   const cacheKey = getCacheKey(text, language);
   if (translationCache.has(cacheKey)) {
     return translationCache.get(cacheKey);

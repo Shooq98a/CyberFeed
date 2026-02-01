@@ -194,6 +194,16 @@ function App() {
     const translateCurrentPage = async () => {
       if (language === 'en' || filteredItems.length === 0) {
         setTranslatedItems(null);
+        setTranslating(false);
+        return;
+      }
+
+      // Check if API key is available
+      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+      if (!apiKey || apiKey.trim() === '') {
+        console.warn('Translation disabled: VITE_OPENAI_API_KEY not set in .env file');
+        setTranslatedItems(null);
+        setTranslating(false);
         return;
       }
 

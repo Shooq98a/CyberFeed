@@ -4,6 +4,14 @@ const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY || '';
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
 export const analyzeWithAI = async (item, language = 'en') => {
+  // Check if API key is available
+  if (!OPENAI_API_KEY || OPENAI_API_KEY.trim() === '') {
+    const errorMsg = language === 'ar' 
+      ? 'مفتاح API غير موجود. يرجى إضافة VITE_OPENAI_API_KEY في ملف .env'
+      : 'API key not found. Please add VITE_OPENAI_API_KEY in .env file';
+    throw new Error(errorMsg);
+  }
+
   try {
     console.log('Starting AI analysis for:', item.title);
     
@@ -59,11 +67,13 @@ export const analyzeWithAI = async (item, language = 'en') => {
     });
     
     // Return a user-friendly error message
-    if (error.message.includes('401') || error.message.includes('Unauthorized')) {
-      throw new Error(language === 'ar' ? 'خطأ في مفتاح API. يرجى التحقق من المفتاح.' : 'API key error. Please check the API key.');
+    if (error.message.includes('API key not found') || error.message.includes('مفتاح API غير موجود')) {
+      throw error; // Re-throw the original error message
+    } else if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+      throw new Error(language === 'ar' ? 'مفتاح API غير صحيح. يرجى التحقق من المفتاح في ملف .env' : 'Invalid API key. Please check the API key in .env file');
     } else if (error.message.includes('429') || error.message.includes('rate limit')) {
       throw new Error(language === 'ar' ? 'تم تجاوز الحد المسموح. يرجى المحاولة لاحقاً.' : 'Rate limit exceeded. Please try again later.');
-    } else if (error.message.includes('network') || error.message.includes('fetch')) {
+    } else if (error.message.includes('network') || error.message.includes('fetch') || error.message.includes('Failed to fetch')) {
       throw new Error(language === 'ar' ? 'خطأ في الاتصال. يرجى التحقق من الاتصال بالإنترنت.' : 'Network error. Please check your internet connection.');
     } else {
       throw new Error(language === 'ar' ? `خطأ في التحليل: ${error.message}` : `Analysis error: ${error.message}`);
