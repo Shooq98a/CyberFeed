@@ -1,4 +1,4 @@
-# CyberCube - Cybersecurity News Aggregator
+# CyberFeed - Cybersecurity News Aggregator
 
 A modern React application that aggregates and displays cybersecurity feeds from Cybersecurity Hub with an intuitive, responsive interface.
 
